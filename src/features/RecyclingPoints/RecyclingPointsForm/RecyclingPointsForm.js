@@ -4,14 +4,19 @@ import { Paper } from "@mui/material";
 import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function RecyclingPointsForm() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [long, setLong] = useState("");
   const [lat, setLat] = useState("");
 
+  const onCancelClicked = () => {
+    navigate(-1);
+  }
+  
   const onFormSubmit = () => {
     console.log(name, long, lat);
     if (id) {
@@ -52,7 +57,7 @@ export default function RecyclingPointsForm() {
         </MKBox>
       </MKBox>
       <div style={{ float: "right" }}>
-        <MKButton variant="outlined" color="info">
+        <MKButton variant="outlined" color="info" onClick={onCancelClicked}>
           Cancel
         </MKButton>
         <MKButton
