@@ -1,16 +1,49 @@
 import { db } from "firebase-config";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  addDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
+
+export const binsCollectionRef = collection(db, "BinsLocation");
 
 export const getBinsLocation = (setBinList) => {
-  const binsLocationCollection = collection(db, "BinsLocation");
-
-  getDocs(binsLocationCollection)
+  setBinList([]);
+  getDocs(binsCollectionRef)
     .then((response) => {
       const data = response.docs.map((doc) => ({
         data: doc.data(),
         id: doc.id,
       }));
       setBinList(data);
+    })
+    .catch((error) => console.log(error.message));
+};
+
+export const addBin = (bin) => {
+  addDoc(binsCollectionRef, { Location: { _lat: bin.lat, _long: bin.long } })
+    .then((response) => {
+      console.log("success");
+    })
+    .catch((error) => console.log(error.message));
+};
+
+export const deleteBin = (binId) => {
+  const docRef = doc(db, "BinsLocation", binId);
+  deleteDoc(docRef)
+    .then(() => {
+      console.log("deleted!");
+    })
+    .catch((error) => console.log(error.message));
+};
+
+export const getBin = (binId) => {
+  
+    db.collection('BinsLocation').doc(binId).get()
+    .then((response) => {
+      console.log(response.docs);
     })
     .catch((error) => console.log(error.message));
 };

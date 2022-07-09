@@ -10,24 +10,28 @@ import Paper from "@mui/material/Paper";
 import MKButton from "components/MKButton";
 import { useNavigate } from "react-router-dom";
 import { getBinsLocation } from "api/Api";
+import { deleteBin } from "api/Api";
 
 export default function RecyclingPointsTable() {
   const [binList, setBinList] = useState([]);
+  const [reload, setReload] = useState(0);
   const navigate = useNavigate();
 
   useEffect(() => {
     getBinsLocation(setBinList);
-  }, []);
+  }, [reload]);
 
   const onEditClicked = (e, record) => {
     e.preventDefault();
-    console.log("Delete", record);
+    console.log("Edit", record);
     navigate(`edit/${record.id}`);
   };
 
   const onDeleteClicked = (e, record) => {
     e.preventDefault();
-    console.log("Edit", record);
+    
+    deleteBin(record.id);
+    setReload(reload + 1);
   };
 
   return (

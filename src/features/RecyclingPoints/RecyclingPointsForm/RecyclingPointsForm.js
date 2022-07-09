@@ -1,28 +1,36 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Paper } from "@mui/material";
 
 import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
 import { useNavigate, useParams } from "react-router-dom";
+import { addBin } from "api/Api";
+import { getBin } from "api/Api";
 
 export default function RecyclingPointsForm() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [bin, setBin] = useState("");
   const [name, setName] = useState("");
   const [long, setLong] = useState("");
   const [lat, setLat] = useState("");
 
+  useEffect(() => {
+    getBin(id);
+  }, [id]);
+
   const onCancelClicked = () => {
     navigate(-1);
-  }
-  
+  };
+
   const onFormSubmit = () => {
     console.log(name, long, lat);
     if (id) {
       //call edit api
     } else {
       //call add api
+      addBin({ lat, long });
     }
   };
 
