@@ -9,7 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import MKButton from "components/MKButton";
 import { useNavigate } from "react-router-dom";
-import { getBinsLocation } from "Api/Api";
+import { getBinsLocation } from "api/Api";
 
 export default function RecyclingPointsTable() {
   const [binList, setBinList] = useState([]);
