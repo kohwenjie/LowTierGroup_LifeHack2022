@@ -7,16 +7,16 @@ import Switch from "@mui/material/Switch";
 import MKTypography from "components/MKTypography";
 import MKInput from "components/MKInput";
 import { useAuth } from "../contexts/AuthContext";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function Signup() {
+export default function SignUp() {
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
   const { signup } = useAuth();
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const history = useHistory();
+  const history = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();

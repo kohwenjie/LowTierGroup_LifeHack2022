@@ -11,7 +11,8 @@ import "./App.css";
 import RootLayout from "Layout/RootLayout";
 import { ROUTES } from "common/routes/routes";
 import Login from "features/Auth/Login/Login";
-import SignUp from "features/Auth/SignUp/SignUp";
+// import SignUp from "features/Auth/SignUp/SignUp";
+import SignUpAcc from "features/Auth/SignUp/SignUpAcc";
 import Home from "features/Home/Home";
 import ListBins from "./components/ListBinsLocations";
 
@@ -53,7 +54,7 @@ function App() {
           {getRoutes(ROUTES)}
           <Route exact path="/" element={<Home />} />
           <Route exact path="/login" element={<Login />} />
-          <Route exact path="/signup" element={<SignUp />}></Route>
+          <Route exact path="/signupacc" element={<SignUpAcc />}></Route>
         </Routes>
       </RootLayout>
     </ThemeProvider>
