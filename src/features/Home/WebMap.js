@@ -23,20 +23,14 @@ function WebMap() {
 		<MKBox sx={{ width: "1000px", height: "1000px" }}>
 			<MapContainer center={position} zoom={13} scrollWheelZoom={false} style={{ width: "100%", height: "100%" }}>
 				<TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-				<Marker position={position} icon={markerIcon}>
-					<Popup>
-						A pretty CSS3 popup. <br /> Easily customizable.
-					</Popup>
-				</Marker>
 
 				{binList.length > 0 &&
 					binList.map((bin) => {
 						const markerPosition = [bin.data.Location._lat, bin.data.Location._long];
+                        const binName = bin.id;
 						return (
 							<Marker position={markerPosition} icon={markerIcon}>
-								<Popup>
-									A pretty CSS3 popup. <br /> Easily customizable.
-								</Popup>
+								<Popup>{binName}</Popup>
 							</Marker>
 						);
 					})}
