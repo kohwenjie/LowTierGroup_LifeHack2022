@@ -1,33 +1,32 @@
 import Icon from "@mui/material/Icon";
+import ManageRecyclingPoints from "features/RecyclingPoints/ManageRecyclingPoints/ManageRecyclingPoints";
 
 
 export const ROUTES = [
   {
-    name: "Demo",
+    name: "Recycling Points",
     icon: <Icon>dashboard</Icon>,
     columns: 1,
     rowsPerColumn: 2,
     collapse: [
       {
-        name: "Demo",
+        name: "Recycling Points",
         collapse: [
           {
-            name: "about us",
-            route: "/demo1",
-            component: <></>,
+            name: "Manage Recycling Points",
+            route: "/recyclingPoints",
+            component: <ManageRecyclingPoints/>,
           },
           {
-            name: "contact us",
-            route: "/demo2",
+            name: "Add Recycling Points",
+            route: "/recyclingPoints/add",
             component: <></>,
-          },
-          {
-            name: "author",
-            route: "/demo3",
-            component: <></>,
-          },
+          }
         ],
       },
     ],
   },
+  {
+
+  }
 ];
