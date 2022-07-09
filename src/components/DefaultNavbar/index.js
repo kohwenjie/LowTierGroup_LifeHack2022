@@ -462,7 +462,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
         color={light ? "white" : "dark"}
         position={relative ? "relative" : "absolute"}
         left={0}
-        zIndex={10}
+        zIndex={100}
         sx={({ palette: { transparent: transparentColor, white }, functions: { rgba } }) => ({
           backgroundColor: transparent ? transparentColor.main : rgba(white.main, 0.8),
           backdropFilter: transparent ? "none" : `saturate(200%) blur(30px)`,
@@ -492,8 +492,6 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
             {action &&
               (action.type === "internal" ? (
                 <MKButton
-                  component={Link}
-                  to={action.route}
                   variant={
                     action.color === "white" || action.color === "default"
                       ? "contained"
@@ -501,6 +499,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                   }
                   color={action.color ? action.color : "info"}
                   size="small"
+                  onClick={action.onClick}
                 >
                   {action.label}
                 </MKButton>

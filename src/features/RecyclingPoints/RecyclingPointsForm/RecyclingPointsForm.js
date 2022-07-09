@@ -6,7 +6,7 @@ import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
 import { useNavigate, useParams } from "react-router-dom";
 import { addBin } from "api/Api";
-import { getBin } from "api/Api";
+// import { getBin } from "api/Api";
 
 export default function RecyclingPointsForm() {
   const { id } = useParams();

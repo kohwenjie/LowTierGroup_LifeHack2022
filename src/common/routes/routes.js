@@ -14,18 +14,17 @@ export const ROUTES = [
         collapse: [
           {
             name: "Manage Recycling Points",
-            route: "/recyclingPoints",
+            route: "/admin/recyclingPoints",
             component: <ManageRecyclingPoints />,
           },
           {
             name: "Add Recycling Points",
-            route: "/recyclingPoints/add",
+            route: "/admin/recyclingPoints/add",
             component: <AddRecyclingPoints />,
           },
         ],
       },
     ],
   },
-  {},
 ];
 export const EMPTY_ROUTES = [{}, {}];

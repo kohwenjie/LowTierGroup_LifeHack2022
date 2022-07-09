@@ -49,23 +49,21 @@ export default function Login() {
   // const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
 
-  // const [rememberMe, setRememberMe] = useState(false);
-
-  // const handleSetRememberMe = () => setRememberMe(!rememberMe);
-
-  const signin = () => {
+  const onSignInClicked = () => {
+    console.log("signin");
     if (!email) alert("Please enter email");
     if (!password) alert("Please enter password");
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        localStorage.setItem("user", "name");
-        navigate("/");
+        localStorage.setItem('user', JSON.stringify(user));
+        navigate("/admin/recyclingPoints");
       })
       .catch((error) => {
-        const errorCode = error.code;
+        // const errorCode = error.code;
         const errorMessage = error.message;
+        alert(errorMessage);
       });
   };
 
@@ -150,29 +148,14 @@ export default function Login() {
                       fullWidth
                     />
                   </MKBox>
-                  {/* <MKBox display="flex" alignItems="center" ml={-1}>
-                    <Switch
-                      checked={rememberMe}
-                      onChange={handleSetRememberMe}
-                    />
-                    <MKTypography
-                      variant="button"
-                      fontWeight="regular"
-                      color="text"
-                      onClick={handleSetRememberMe}
-                      sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
-                    >
-                      &nbsp;&nbsp;Remember me
-                    </MKTypography>
-                  </MKBox> */}
                   <MKBox mt={4} mb={1}>
                     <MKButton
                       variant="gradient"
                       color="info"
-                      onClick={signin}
+                      onClick={onSignInClicked}
                       fullWidth
                     >
-                      sign in
+                      Sign in
                     </MKButton>
                   </MKBox>
                   <MKBox mt={3} mb={1} textAlign="center">
@@ -180,7 +163,6 @@ export default function Login() {
                       Don&apos;t have an account?{" "}
                       <MKTypography
                         component={Link}
-                        // to="/authentication/sign-up/cover"
                         to="/signupacc"
                         variant="button"
                         color="info"
