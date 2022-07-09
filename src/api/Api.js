@@ -39,11 +39,11 @@ export const deleteBin = (binId) => {
     .catch((error) => console.log(error.message));
 };
 
-export const getBin = (binId) => {
+// export const getBin = ({binId, setBin}) => {
   
-    db.collection('BinsLocation').doc(binId).get()
-    .then((response) => {
-      console.log(response.docs);
-    })
-    .catch((error) => console.log(error.message));
-};
+//     db.collection('BinsLocation').doc(binId).get()
+//     .then((response) => {
+//       console.log(response.docs);
+//     })
+//     .catch((error) => console.log(error.message));
+// };
