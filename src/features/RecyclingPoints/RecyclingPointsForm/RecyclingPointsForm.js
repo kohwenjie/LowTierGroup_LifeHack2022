@@ -16,9 +16,9 @@ export default function RecyclingPointsForm() {
   const [long, setLong] = useState("");
   const [lat, setLat] = useState("");
 
-  useEffect(() => {
-    getBin(id);
-  }, [id]);
+//   useEffect(() => {
+//     getBin(id);
+//   }, [id]);
 
   const onCancelClicked = () => {
     navigate(-1);
