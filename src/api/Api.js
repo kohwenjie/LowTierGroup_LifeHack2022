@@ -1,19 +1,16 @@
+import { db } from "firebase-config";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase-config";
 
-export const getBinsLocation = () => {
-    let listOfBins =[];
-	const binsLocationCollection = collection(db, "BinsLocation");
-	getDocs(binsLocationCollection)
-		.then((response) => {
-			const coords = response.docs.map((doc) => ({
-				data: doc.data(),
-				id: doc.id,
-			}));
+export const getBinsLocation = (setBinList) => {
+  const binsLocationCollection = collection(db, "BinsLocation");
 
-			listOfBins = coords;
-		})
-		.catch((error) => console.log(error.message));
-        console.log(listOfBins)
-        return listOfBins;
+  getDocs(binsLocationCollection)
+    .then((response) => {
+      const data = response.docs.map((doc) => ({
+        data: doc.data(),
+        id: doc.id,
+      }));
+      setBinList(data);
+    })
+    .catch((error) => console.log(error.message));
 };
