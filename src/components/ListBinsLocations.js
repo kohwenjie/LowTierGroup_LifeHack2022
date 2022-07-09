@@ -1,8 +1,6 @@
-import divider from 'assets/theme/components/divider';
 import React, { useEffect, useState } from 'react';
 import { db } from '../firebase-config';
 import { collection, getDocs } from 'firebase/firestore';
-import { array } from 'prop-types';
 
 export default function ListBins() {
     

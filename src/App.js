@@ -49,7 +49,6 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <RootLayout>
-        <ListBins />
         <Routes>
           {getRoutes(ROUTES)}
           <Route exact path="/" element={<Home />} />
