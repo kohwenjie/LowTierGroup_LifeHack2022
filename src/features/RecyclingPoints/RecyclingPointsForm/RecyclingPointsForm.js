@@ -30,7 +30,7 @@ export default function RecyclingPointsForm() {
       //call edit api
     } else {
       //call add api
-      addBin({ lat, long });
+      addBin({ lat, long, name });
     }
   };
 

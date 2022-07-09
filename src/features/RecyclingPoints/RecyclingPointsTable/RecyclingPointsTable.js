@@ -58,7 +58,7 @@ export default function RecyclingPointsTable() {
                 key={row.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
-                <TableCell>{row.id}</TableCell>
+                <TableCell>{row.data.Name}</TableCell>
                 <TableCell>{row.data.Location._long}</TableCell>
                 <TableCell>{row.data.Location._lat}</TableCell>
                 <TableCell>{row.type}</TableCell>

@@ -23,7 +23,10 @@ export const getBinsLocation = (setBinList) => {
 };
 
 export const addBin = (bin) => {
-  addDoc(binsCollectionRef, { Location: { _lat: bin.lat, _long: bin.long } })
+  addDoc(binsCollectionRef, { 
+      Location: { _lat: bin.lat, _long: bin.long },
+      Name: bin.Name
+    })
     .then((response) => {
       console.log("success");
     })
