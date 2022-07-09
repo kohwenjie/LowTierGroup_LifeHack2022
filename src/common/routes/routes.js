@@ -26,6 +26,5 @@ export const ROUTES = [
       },
     ],
   },
-  {},
 ];
 export const EMPTY_ROUTES = [{}, {}];

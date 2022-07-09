@@ -1,46 +1,31 @@
-import { useLocation } from "react-router-dom";
 import { ROUTES, EMPTY_ROUTES } from "common/routes/routes";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import DefaultNavbar from "components/DefaultNavbar";
 import MKBox from "components/MKBox";
 
 export default function RootLayout({ children }) {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.clear();
+  const loginAction = {
+    type: "internal",
+    label: "Login",
+    color: "info",
+    onClick: () => {
+      navigate("/login");
+    },
+  };
+  const logoutAction = {
+    type: "internal",
+    label: "Logout",
+    color: "info",
+    onClick: () => {
+      localStorage.removeItem("user");
+      navigate("/");
+    },
   };
 
   var loggedin = localStorage.getItem("user");
-  if (loggedin) {
-    return (
-      <>
-        <MKBox
-          display="flex"
-          flexDirection="column"
-          bgColor="white"
-          minHeight="100vh"
-        >
-          <MKBox bgColor="white" shadow="sm" py={0.25} onClick={handleLogout}>
-            {pathname !== "/login" ? (
-              <DefaultNavbar
-                routes={ROUTES}
-                action={{
-                  type: "external",
-                  route: "/",
-                  label: "Logout",
-                  color: "info",
-                }}
-                transparent
-                relative
-              />
-            ) : null}
-          </MKBox>
-          {children}
-        </MKBox>
-      </>
-    );
-  }
-  // when a user is not logged in
   return (
     <>
       <MKBox
@@ -52,19 +37,14 @@ export default function RootLayout({ children }) {
         <MKBox bgColor="white" shadow="sm" py={0.25}>
           {pathname !== "/login" ? (
             <DefaultNavbar
-            routes={EMPTY_ROUTES}
-              action={{
-                type: "external",
-                route: "/login",
-                label: "Login",
-                color: "info",
-              }}
+              routes={loggedin ? ROUTES : EMPTY_ROUTES}
+              action={loggedin ? logoutAction : loginAction}
               transparent
               relative
             />
           ) : null}
         </MKBox>
-        {children}
+        <Outlet />
       </MKBox>
     </>
   );
