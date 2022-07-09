@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 import { useState } from "react";
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -37,18 +37,40 @@ import SimpleFooter from "components/Footers/SimpleFooter";
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 import { ROUTES } from "common/routes/routes";
 
-export default function Login() {
-  const [rememberMe, setRememberMe] = useState(false);
+// Firebase functions
+// import { auth, registerWithEmailAndPassword } from "./firebase";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 
-  const handleSetRememberMe = () => setRememberMe(!rememberMe);
+export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const auth = getAuth();
+  // const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
+
+  // const [rememberMe, setRememberMe] = useState(false);
+
+  // const handleSetRememberMe = () => setRememberMe(!rememberMe);
+
+  const signin = () => {
+    if (!email) alert("Please enter email");
+    if (!password) alert("Please enter password");
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        navigate("/admin");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      });
+  };
 
   return (
     <>
-      <DefaultNavbar
-        routes={ROUTES}
-        transparent
-        light
-      />
+      <DefaultNavbar routes={ROUTES} transparent light />
       <MKBox
         position="absolute"
         top={0}
@@ -106,17 +128,28 @@ export default function Login() {
                 >
                   Sign in
                 </MKTypography>
-                
               </MKBox>
               <MKBox pt={4} pb={3} px={3}>
                 <MKBox component="form" role="form">
                   <MKBox mb={2}>
-                    <MKInput type="email" label="Email" fullWidth />
+                    <MKInput
+                      type="email"
+                      label="Email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      fullWidth
+                    />
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput type="password" label="Password" fullWidth />
+                    <MKInput
+                      type="password"
+                      label="Password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
+                      fullWidth
+                    />
                   </MKBox>
-                  <MKBox display="flex" alignItems="center" ml={-1}>
+                  {/* <MKBox display="flex" alignItems="center" ml={-1}>
                     <Switch
                       checked={rememberMe}
                       onChange={handleSetRememberMe}
@@ -130,9 +163,14 @@ export default function Login() {
                     >
                       &nbsp;&nbsp;Remember me
                     </MKTypography>
-                  </MKBox>
+                  </MKBox> */}
                   <MKBox mt={4} mb={1}>
-                    <MKButton variant="gradient" color="info" fullWidth>
+                    <MKButton
+                      variant="gradient"
+                      color="info"
+                      onClick={signin}
+                      fullWidth
+                    >
                       sign in
                     </MKButton>
                   </MKBox>
@@ -141,7 +179,8 @@ export default function Login() {
                       Don&apos;t have an account?{" "}
                       <MKTypography
                         component={Link}
-                        to="/authentication/sign-up/cover"
+                        // to="/authentication/sign-up/cover"
+                        to="/signupacc"
                         variant="button"
                         color="info"
                         fontWeight="medium"
