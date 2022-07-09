@@ -1,17 +1,40 @@
 import MKBox from "components/MKBox";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-import L from "leaflet"
+import L from "leaflet";
+// import { getBinsLocation } from "api/Api";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "firebase-config";
 
 const markerIcon = new L.icon({
-    iconUrl: require("../../assets/images/recyclingBin.png"),
-    iconSize: [30,30]
-})
+	iconUrl: require("../../assets/images/recyclingBin.png"),
+	iconSize: [30, 30],
+});
 
 function WebMap() {
-    //lng, lat, this is the centre of singapore
+	//lng, lat, this is the centre of singapore
 	const position = [1.3521, 103.8198];
+	const [binList, setBinList] = useState([]);
+
+	useEffect(() => {
+		getBinsLocation();
+		console.log(binList);
+	}, []);
+
+	function getBinsLocation() {
+		const binsLocationCollection = collection(db, "BinsLocation");
+		getDocs(binsLocationCollection)
+			.then((response) => {
+				const data = response.docs.map((doc) => ({
+					data: doc.data(),
+					id: doc.id,
+				}));
+
+				setBinList(data);
+			})
+			.catch((error) => console.log(error.message));
+	}
 
 	return (
 		<MKBox sx={{ width: "1000px", height: "1000px" }}>
@@ -22,6 +45,18 @@ function WebMap() {
 						A pretty CSS3 popup. <br /> Easily customizable.
 					</Popup>
 				</Marker>
+
+				{binList.length > 0 &&
+					binList.map((bin) => {
+						const markerPosition = [bin.data.Location._lat, bin.data.Location._long];
+						return (
+							<Marker position={markerPosition} icon={markerIcon}>
+								<Popup>
+									A pretty CSS3 popup. <br /> Easily customizable.
+								</Popup>
+							</Marker>
+						);
+					})}
 			</MapContainer>
 		</MKBox>
 	);
