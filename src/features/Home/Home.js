@@ -6,10 +6,14 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 import bgImage from "assets/images/bg-presentation.jpg";
+import WebMap from "./WebMap";
 
 export default function Home() {
   return (
     <>
+
+      <WebMap></WebMap>
+{/* 
       <MKBox
         minHeight="75vh"
         width="100%"
@@ -62,7 +66,7 @@ export default function Home() {
         }}
       >
 
-      </Card>
+      </Card> */}
     </>
   );
 }
