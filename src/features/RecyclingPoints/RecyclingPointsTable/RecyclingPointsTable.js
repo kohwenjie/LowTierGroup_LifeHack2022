@@ -1,6 +1,6 @@
 import * as React from "react";
 import { db } from "firebase-config";
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs } from "firebase/firestore";
 import { useState, useEffect } from "react";
 
 import Table from "@mui/material/Table";
@@ -9,10 +9,12 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-
+import MKButton from "components/MKButton";
+import { useNavigate } from "react-router-dom";
 
 export default function RecyclingPointsTable() {
   const [binList, setBinList] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     getBinsLocation();
@@ -32,7 +34,16 @@ export default function RecyclingPointsTable() {
       .catch((error) => console.log(error.message));
   }
 
-  console.log(binList);
+  const onEditClicked = (e, record) => {
+    e.preventDefault();
+    console.log("Delete", record);
+    navigate(`edit/${record.id}`);
+  }
+
+  const onDeleteClicked = (e, record) => {
+    e.preventDefault();
+    console.log("Edit", record);
+  }
 
   return (
     <Paper sx={{ padding: "5vh" }}>
@@ -62,6 +73,12 @@ export default function RecyclingPointsTable() {
                 <TableCell>{row.data.Location._long}</TableCell>
                 <TableCell>{row.data.Location._lat}</TableCell>
                 <TableCell>{row.type}</TableCell>
+                <TableCell>
+                  <MKButton onClick={(e) => onEditClicked(e, row)}>Edit</MKButton>
+                </TableCell>
+                <TableCell>
+                  <MKButton onClick={(e) => onDeleteClicked(e, row)}>Delete</MKButton>
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
