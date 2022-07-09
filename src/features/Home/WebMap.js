@@ -19,13 +19,13 @@ function WebMap(props) {
 	const userLocation = props.userLocation;
 	const center = [1.3521, 103.8198];
 	const [binList, setBinList] = useState([]);
-	const [polyline, setPolyline] = useState([[], []]);
+	// const [polyline, setPolyline] = useState(null);
 	const redOptions = { color: "red" };
 
 	useEffect(() => {
 		getBinsLocation(setBinList);
 		if (userLocation.latitude !== null) {
-			setPolyline(nearestBin(userLocation.latitude, userLocation.longitude));
+			// setPolyline(nearestBin(userLocation.latitude, userLocation.longitude));
 		}
 	}, [userLocation]);
 
@@ -42,7 +42,7 @@ function WebMap(props) {
 			}
 			if (distance <= shortestDistance && selectedBin !== null) {
 				console.log([binLat, binLon]);
-                shortestDistance = distance
+				shortestDistance = distance;
 				selectedBin = [binLat, binLon];
 			}
 		});
@@ -85,8 +85,8 @@ function WebMap(props) {
 							</Marker>
 						);
 					})}
-                
-				<Polyline pathOptions={redOptions} positions={polyline} />
+
+				{/* {polyline !== null && <Polyline pathOptions={redOptions} positions={polyline} />} */}
 			</MapContainer>
 		</MKBox>
 	);
