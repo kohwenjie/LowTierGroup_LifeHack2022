@@ -11,8 +11,9 @@ import "./App.css";
 import RootLayout from "Layout/RootLayout";
 import { ROUTES } from "common/routes/routes";
 import Login from "features/Auth/Login/Login";
+import SignUp from "features/Auth/SignUp/SignUp";
 import Home from "features/Home/Home";
-import ListBins from './components/ListBinsLocations'
+import ListBins from "./components/ListBinsLocations";
 
 function App() {
   const { pathname } = useLocation();
@@ -43,19 +44,20 @@ function App() {
       return null;
     });
 
-    return (
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <RootLayout>
-          <ListBins/>
-          <Routes>
+  return (
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <RootLayout>
+        <ListBins />
+        <Routes>
           {getRoutes(ROUTES)}
-            <Route exact path="/" element={<Home />} />
-            <Route exact path="/login" element={<Login />} />
-          </Routes> 
-        </RootLayout>
-      </ThemeProvider>
-    );
+          <Route exact path="/" element={<Home />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/signup" element={<SignUp />}></Route>
+        </Routes>
+      </RootLayout>
+    </ThemeProvider>
+  );
 }
 
 export default App;
