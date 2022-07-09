@@ -35,7 +35,7 @@ import SimpleFooter from "components/Footers/SimpleFooter";
 
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
-import { ROUTES } from "common/routes/routes";
+import { EMPTY_ROUTES } from "common/routes/routes";
 
 // Firebase functions
 // import { auth, registerWithEmailAndPassword } from "./firebase";
@@ -60,7 +60,8 @@ export default function Login() {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        navigate("/admin");
+        localStorage.setItem("user", "name");
+        navigate("/");
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -70,7 +71,7 @@ export default function Login() {
 
   return (
     <>
-      <DefaultNavbar routes={ROUTES} transparent light />
+      <DefaultNavbar routes={EMPTY_ROUTES} transparent light />
       <MKBox
         position="absolute"
         top={0}

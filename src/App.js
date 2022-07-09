@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 // @mui material components
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -55,8 +55,12 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/admin" element={<Admin />} />
           <Route exact path="/login" element={<Login />} />
-          <Route exact path="/signupacc" element={<SignUpAcc />}/>
-          <Route exact path="/recyclingPoints/edit/:id" element={<EditRecyclingPoint />}/>
+          <Route exact path="/signupacc" element={<SignUpAcc />} />
+          <Route
+            exact
+            path="/recyclingPoints/edit/:id"
+            element={<EditRecyclingPoint />}
+          />
         </Routes>
       </RootLayout>
     </ThemeProvider>
