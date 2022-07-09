@@ -75,10 +75,10 @@ function SimpleFooter({ company, links, light }) {
           by
           <Link href={href} target="_blank">
             <MKTypography variant="button" fontWeight="medium" color={light ? "white" : "dark"}>
-              &nbsp;{name}&nbsp;
+              &nbsp;LowTierGroup&nbsp;
             </MKTypography>
           </Link>
-          for a better web.
+          for a better environment.
         </MKBox>
         <MKBox
           component="ul"
@@ -106,12 +106,10 @@ function SimpleFooter({ company, links, light }) {
 
 // Setting default values for the props of SimpleFooter
 SimpleFooter.defaultProps = {
-  company: { href: "https://www.creative-tim.com/", name: "Creative Tim" },
+  company: { href: "", name: "LowTierGroup" },
   links: [
-    { href: "https://www.creative-tim.com/", name: "Creative Tim" },
-    { href: "https://www.creative-tim.com/presentation", name: "About Us" },
-    { href: "https://www.creative-tim.com/blog", name: "Blog" },
-    { href: "https://www.creative-tim.com/license", name: "License" },
+    { href: "https://github.com/kohwenjie/LowTierGroup_LifeHack2022", name: "Github" },
+    { href: "", name: "Blog" },
   ],
   light: false,
 };
