@@ -6,8 +6,6 @@ import MKBox from "components/MKBox";
 export default function RootLayout({ children }) {
   const { pathname } = useLocation();
 
-  console.log(pathname);
-
   return (
     <>
       <MKBox

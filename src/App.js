@@ -14,7 +14,8 @@ import Login from "features/Auth/Login/Login";
 // import SignUp from "features/Auth/SignUp/SignUp";
 import SignUpAcc from "features/Auth/SignUp/SignUpAcc";
 import Home from "features/Home/Home";
-import ListBins from "./components/ListBinsLocations";
+import Admin from "features/Home/Admin";
+import EditRecyclingPoint from "features/RecyclingPoints/EditRecyclingPoint/EditRecyclingPoint";
 
 function App() {
   const { pathname } = useLocation();
@@ -52,8 +53,10 @@ function App() {
         <Routes>
           {getRoutes(ROUTES)}
           <Route exact path="/" element={<Home />} />
+          <Route exact path="/admin" element={<Admin />} />
           <Route exact path="/login" element={<Login />} />
-          <Route exact path="/signupacc" element={<SignUpAcc />}></Route>
+          <Route exact path="/signupacc" element={<SignUpAcc />}/>
+          <Route exact path="/recyclingPoints/edit/:id" element={<EditRecyclingPoint />}/>
         </Routes>
       </RootLayout>
     </ThemeProvider>
