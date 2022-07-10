@@ -15,7 +15,7 @@ const SearchBar = (props) => {
 	});
 
 	useEffect(() => {
-		if (coords !== undefined) {
+		if (coords) {
 			props.getUserLocationHandler({ latitude: coords.latitude, longitude: coords.longitude });
 		}
 	}, [coords])
