@@ -8,7 +8,7 @@ import SearchBar from "./SearchBar";
 
 import WebMap from "./WebMap";
 import { ROUTES } from "common/routes/routes";
-import bgImage from "assets/images/bg-presentation.jpg";
+import bgImage from "assets/images/city-profile.jpg";
 
 export default function Home() {
   const navigate = useNavigate();

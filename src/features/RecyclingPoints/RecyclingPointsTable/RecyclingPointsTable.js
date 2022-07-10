@@ -48,9 +48,6 @@ export default function RecyclingPointsTable() {
             <TableCell>
               <b>Latitude</b>
             </TableCell>
-            <TableCell>
-              <b>Type</b>
-            </TableCell>
           </TableRow>
           <TableBody>
             {binList.map((row) => (
@@ -61,7 +58,6 @@ export default function RecyclingPointsTable() {
                 <TableCell>{row.data.Name}</TableCell>
                 <TableCell>{row.data.Location._long}</TableCell>
                 <TableCell>{row.data.Location._lat}</TableCell>
-                <TableCell>{row.type}</TableCell>
                 <TableCell>
                   <MKButton onClick={(e) => onEditClicked(e, row)}>
                     Edit

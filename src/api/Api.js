@@ -2,10 +2,13 @@ import { db } from "firebase-config";
 import {
   collection,
   getDocs,
+  getDoc,
   addDoc,
   deleteDoc,
+  updateDoc,
   doc,
 } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
 
 export const binsCollectionRef = collection(db, "BinsLocation");
 
@@ -23,10 +26,10 @@ export const getBinsLocation = (setBinList) => {
 };
 
 export const addBin = (bin) => {
-  addDoc(binsCollectionRef, { 
-      Location: { _lat: bin.lat, _long: bin.long },
-      Name: bin.name
-    })
+  addDoc(binsCollectionRef, {
+    Location: { _lat: bin.lat, _long: bin.long },
+    Name: bin.name,
+  })
     .then((response) => {
       console.log("success");
     })
@@ -42,11 +45,21 @@ export const deleteBin = (binId) => {
     .catch((error) => console.log(error.message));
 };
 
-// export const getBin = ({binId, setBin}) => {
+export const getBin = async ({ binId, setBin }) => {
+  const docRef = doc(db, "BinsLocation", binId);
+  getDoc(docRef)
+    .then((response) => {
+      setBin(response.data());
+    })
+    .catch((error) => console.log(error.message));
+};
 
-//     db.collection('BinsLocation').doc(binId).get()
-//     .then((response) => {
-//       console.log(response.docs);
-//     })
-//     .catch((error) => console.log(error.message));
-// };
+export const updateBin = ({ binId, updatedBin }) => {
+  console.log('updateBin');
+  const docRef = doc(db, "BinsLocation", binId);
+  updateDoc(docRef, updatedBin)
+    .then(() => {
+      alert("Edit Successful");
+    })
+    .catch((error) => alert(error.message));
+};

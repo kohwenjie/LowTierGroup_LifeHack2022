@@ -5,8 +5,7 @@ import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
 import { useNavigate, useParams } from "react-router-dom";
-import { addBin } from "api/Api";
-// import { getBin } from "api/Api";
+import { addBin, getBin, updateBin } from "api/Api";
 
 export default function RecyclingPointsForm() {
   const { id } = useParams();
@@ -16,20 +15,26 @@ export default function RecyclingPointsForm() {
   const [long, setLong] = useState("");
   const [lat, setLat] = useState("");
 
-//   useEffect(() => {
-//     getBin(id);
-//   }, [id]);
+  useEffect(() => {
+    getBin({ binId: id, setBin });
+  }, [id]);
+
+  useEffect(() => {
+    setName(bin?.Name);
+    setLat(bin?.Location?._lat);
+    setLong(bin?.Location?._long);
+  }, [bin]);
 
   const onCancelClicked = () => {
-    navigate(-1);
+    navigate("/admin/recyclingPoints");
   };
 
-  const onFormSubmit = () => {
-    console.log(name, long, lat);
+  const onFormSubmit = (e) => {
+    e.preventDefault();
+    const updatedBin = { Name: name, Location: { _lat: lat, _long: long } };
     if (id) {
-      //call edit api
+      updateBin({ binId: id, updatedBin });
     } else {
-      //call add api
       addBin({ lat, long, name });
     }
   };
@@ -48,7 +53,7 @@ export default function RecyclingPointsForm() {
         <MKBox mb={3}>
           <MKInput
             type="number"
-            label="Longtitude"
+            label="Longitude"
             fullWidth
             value={long}
             onChange={(e) => setLong(e.target.value)}
