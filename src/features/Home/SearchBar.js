@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 const SearchBar = (props) => {
 
 	const {
-		coords = { latitude: null, longitude: null, altitude: null, heading: null, speed: null },
+		coords,
 		isGeolocationAvailable,
 		isGeolocationEnabled,
 	} = useGeolocated({
@@ -20,7 +20,8 @@ const SearchBar = (props) => {
 		}
 	}, [coords])
     
-
+	console.log(coords);
+	
 	return !isGeolocationAvailable ? (
 		<div>Your browser does not support Geolocation</div>
 	) : !isGeolocationEnabled ? (
