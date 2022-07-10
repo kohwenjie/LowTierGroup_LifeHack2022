@@ -46,19 +46,16 @@ export default function SignUpAcc() {
         navigate("/admin");
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
+        alert(errorMessage)
       });
   };
 
-  // useEffect(() => {
-  //   if (loading) return;
-  //   if (user) navigate("/dashboard");
-  // }, [user, loading]);
+  let isUserLoggedIn = localStorage.getItem("user") ? true : false;
 
   return (
     <>
-      <DefaultNavbar routes={ROUTES} transparent light />
+      <DefaultNavbar routes={isUserLoggedIn ? ROUTES : []} transparent light />
       <MKBox
         position="absolute"
         top={0}
