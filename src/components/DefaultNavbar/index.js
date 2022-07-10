@@ -287,7 +287,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
       open={Boolean(dropdown)}
       placement="top-start"
       transition
-      style={{ zIndex: 10 }}
+      style={{ zIndex: 100 }}
       modifiers={[
         {
           name: "arrow",

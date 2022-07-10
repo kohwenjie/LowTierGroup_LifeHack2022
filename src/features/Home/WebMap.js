@@ -24,10 +24,10 @@ function WebMap(props) {
 
 	useEffect(() => {
 		getBinsLocation(setBinList);
-		if (userLocation.latitude !== null) {
-			// setPolyline(nearestBin(userLocation.latitude, userLocation.longitude));
-		}
-	}, [userLocation]);
+		// if (userLocation.latitude !== null) {
+		// 	 setPolyline(nearestBin(userLocation.latitude, userLocation.longitude));
+		// }
+	}, []);
 
 	function nearestBin(userLat, userLon) {
 		var shortestDistance = -1;
