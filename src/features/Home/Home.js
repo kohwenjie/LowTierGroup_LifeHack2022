@@ -9,6 +9,7 @@ import SearchBar from "./SearchBar";
 import WebMap from "./WebMap";
 import { ROUTES } from "common/routes/routes";
 import bgImage from "assets/images/city-profile.jpg";
+import Header from "components/Header/Header";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -51,17 +52,8 @@ export default function Home() {
           center
         />
       </MKBox>
-      <MKBox
-        minHeight="20vh"
-        width="100%"
-        sx={{
-          backgroundImage: `url(${bgImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "top",
-          display: "grid",
-          placeItems: "center",
-        }}
-      ></MKBox>
+
+      <Header title="Recycle Go Where" bgImage={bgImage} />
       <Grid container spacing={2}>
         <Grid item xs={4} lg={7} justifyContent="right" mx="auto">
           <SearchBar getUserLocationHandler={getUserLocationHandler} />
