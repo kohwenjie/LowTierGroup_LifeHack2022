@@ -15,11 +15,11 @@ const userLocationIcon = new L.icon({
 });
 
 function WebMap(props) {
-	//lng, latitude, this is the centre of singapore
+	//latitude, longitude, this is the centre of singapore
 	const userLocation = props.userLocation;
 	const center = [1.3521, 103.8198];
 	const [binList, setBinList] = useState([]);
-	// const [polyline, setPolyline] = useState(null);
+	const [polyline, setPolyline] = useState([[0,0],[0,0]]);
 	const redOptions = { color: "red" };
 
 	useEffect(() => {
@@ -86,7 +86,7 @@ function WebMap(props) {
 						);
 					})}
 
-				{/* {polyline !== null && <Polyline pathOptions={redOptions} positions={polyline} />} */}
+				{polyline !== [[0,0],[0,0]] && <Polyline pathOptions={redOptions} positions={polyline} />}
 			</MapContainer>
 		</MKBox>
 	);

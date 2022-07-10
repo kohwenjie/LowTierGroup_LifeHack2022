@@ -24,10 +24,12 @@ const SearchBar = (props) => {
 	return !isGeolocationAvailable ? (
 		<div>Your browser does not support Geolocation</div>
 	) : !isGeolocationEnabled ? (
-		<div>Geolocation is not enabled</div>
+		<div>Geolocation is not enabled, Unable to find your location!</div>
 	) : coords ? (
 		<table>
 			<tbody>
+
+            <h1>Your Location is:</h1>
 				<tr>
 					<td>latitude</td>
 					<td>{coords?.latitude}</td>

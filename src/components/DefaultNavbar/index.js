@@ -550,7 +550,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
 
 // Setting default values for the props of DefaultNavbar
 DefaultNavbar.defaultProps = {
-  brand: "Low Tier Group",
+  brand: "RecycleMeWhere",
   transparent: false,
   light: false,
   action: false,
