@@ -41,6 +41,7 @@ export default function RootLayout({ children }) {
               action={loggedin ? logoutAction : loginAction}
               transparent
               relative
+              center
             />
           ) : null}
         </MKBox>
