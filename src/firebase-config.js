@@ -2,12 +2,12 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "@firebase/firestore";
 
 const firebaseConfig = {
-	apiKey: "AIzaSyClicphITihEGziqBaIzr4hqu9FN_08eIE",
-	authDomain: "recyclemewhere.firebaseapp.com",
-	projectId: "recyclemewhere",
-	storageBucket: "recyclemewhere.appspot.com",
-	messagingSenderId: "261991752073",
-	appId: "1:261991752073:web:f7bf4a15b6853d6d7b8158",
+  apiKey: "AIzaSyDhbB45-Jj7GzUTLHLm8rQ6ooGb_nCZ7Zo",
+  authDomain: "recyclemewhere-lifehack.firebaseapp.com",
+  projectId: "recyclemewhere-lifehack",
+  storageBucket: "recyclemewhere-lifehack.appspot.com",
+  messagingSenderId: "487904641226",
+  appId: "1:487904641226:web:57d68a710a51e2bd153433"
 };
 
 const app = initializeApp(firebaseConfig);
