@@ -19,7 +19,7 @@ function WebMap(props) {
 	const userLocation = props.userLocation;
 	const center = [1.3521, 103.8198];
 	const [binList, setBinList] = useState([]);
-	const [polyline, setPolyline] = useState([[0,0],[0,0]]);
+	const [polyline, setPolyline] = useState([[1,1],[1,1]]);
 	const redOptions = { color: "red" };
 
 	useEffect(() => {
